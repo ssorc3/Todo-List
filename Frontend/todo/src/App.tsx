@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { type TodoItem } from "./Types";
 import PuffLoader from "react-spinners/PuffLoader";
+import { TodoList } from "./components/TodoList";
 import * as API from "./Api";
 import "./App.css";
 
@@ -11,33 +12,7 @@ const Spinner: React.FC = () => {
       <PuffLoader color={"#000"} loading={true} size={50} />
     </div>
   )
-}
-
-const Todo: React.FC<TodoItem> = ({ description }) => {
-  return (
-    <div className="todo">
-      {description}
-    </div>
-  )
-}
-
-type TodoListProps = {
-  items: TodoItem[]
-}
-
-const TodoList: React.FC<TodoListProps> = ({ items }) => {
-  return (
-    <div>
-      {items.length ?
-        items.map((item, index) => (
-          <Todo key={index} {...item} />
-        ))
-        : <h2 className="message">
-          You have no todos yet.
-        </h2>}
-    </div>
-  )
-}
+};
 
 const getUserId = (): string => {
   const existing = localStorage.getItem("userId");
@@ -50,7 +25,7 @@ const getUserId = (): string => {
   }
 }
 
-const App = () => {
+const App: React.FC = () => {
   const userId = getUserId();
   const [todos, setTodos] = useState<TodoItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
