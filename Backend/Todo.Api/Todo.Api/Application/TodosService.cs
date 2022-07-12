@@ -15,4 +15,10 @@ public class TodosService : ITodosService
     {
         return _store.GetAll(userId);
     }
+
+    public async Task CreateTodo(string userId, string description)
+    {
+        var todo = new TodoItem(userId, description);
+        await _store.Save(todo);
+    }
 }

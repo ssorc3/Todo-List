@@ -6,7 +6,7 @@ namespace Todo.Tests.UnitTests;
 public class TodoItemTests
 {
     [Test]
-    public void CanCreateATodoItem()
+    public void GivenValidInputs_CanCreateTodo()
     {
         const string description = "An example item";
         const string userId = "TestUser";
@@ -17,6 +17,15 @@ public class TodoItemTests
         {
             Assert.That(todo.Description, Is.EqualTo(description));
             Assert.That(todo.CreatedBy, Is.EqualTo(userId));
+        });
+    }
+
+    [Test]
+    public void GivenEmptyDescription_CannotCreateTodo()
+    {
+        Assert.Throws<DomainException>(() =>
+        {
+            _ = new TodoItem("TestUser", "");
         });
     }
 }

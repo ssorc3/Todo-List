@@ -16,4 +16,10 @@ public class EntityFrameworkTodoStore : ITodoStore
     {
         return _ctx.Todos.Where(x => x.CreatedBy == userId);
     }
+
+    public async Task Save(TodoItem todo)
+    {
+        await _ctx.AddAsync(todo);
+        await _ctx.SaveChangesAsync();
+    }
 }

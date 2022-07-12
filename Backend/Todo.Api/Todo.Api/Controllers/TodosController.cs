@@ -18,7 +18,23 @@ public class TodosController : ControllerBase
     [HttpGet]
     public ActionResult<IEnumerable<TodoItem>> GetAll([FromQuery] string? userId)
     {
-        if (userId is null) return BadRequest(new { Error = "You must give a userId query parameter." });
+        if (string.IsNullOrEmpty(userId)) return BadRequest(new { Error = "You must give a userId query parameter." });
         return Ok(_svc.GetAll(userId));
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> Create([FromBody] CreateTodoRequest request)
+    {
+        if (string.IsNullOrEmpty(request.UserId)) return BadRequest(new { Error = "You must set UserId" });
+        try
+        {
+            await _svc.CreateTodo(request.UserId, request.Description);
+        }
+        catch (DomainException e)
+        {
+            return BadRequest(new { Error = e.Message });
+        }
+
+        return Ok();
     }
 }

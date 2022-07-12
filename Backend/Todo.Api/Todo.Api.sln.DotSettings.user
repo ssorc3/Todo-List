@@ -3,5 +3,6 @@
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::1C2F910E-5844-4E89-B7B6-8F0C2334DB73::net6.0::Todo.Tests.InteractionTests.GetAllTests&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::1C2F910E-5844-4E89-B7B6-8F0C2334DB73::net6.0::Todo.Tests.UnitTests.TodoItemTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::1C2F910E-5844-4E89-B7B6-8F0C2334DB73::net6.0::Todo.Tests.InteractionTests.CreateTodoTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

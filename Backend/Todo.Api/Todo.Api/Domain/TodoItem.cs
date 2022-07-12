@@ -8,6 +8,8 @@ public class TodoItem
 
     public TodoItem(string createdBy, string description)
     {
+        if (description == "") throw new DomainException("You must provide a description.");
+        
         Id = 0;
         Description = description;
         CreatedBy = createdBy;
