@@ -92,3 +92,9 @@ header {
 .todo-form button.disabled {
   background: #86efac;
 }
+
+.error-message {
+  color: red;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}

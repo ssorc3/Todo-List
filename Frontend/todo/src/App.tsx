@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { type TodoItem } from "./Types";
 import PuffLoader from "react-spinners/PuffLoader";
 import { TodoList } from "./components/TodoList";
+import { TodoForm } from "./components/TodoForm";
 import * as API from "./Api";
 import "./App.css";
 
@@ -39,6 +40,11 @@ const App: React.FC = () => {
     getData();
   }, [userId, setTodos])
 
+  const addTodo = async (todo: TodoItem): Promise<void> => {
+    await API.saveTodo(userId, todo);
+    setTodos([...todos, todo]);
+  }
+
   return (
     <div className="App">
       <header>
@@ -48,6 +54,7 @@ const App: React.FC = () => {
         {loading ?
           <Spinner />
           : <TodoList items={todos} />}
+        <TodoForm addTodo={addTodo} />
       </div>
     </div>
   );
