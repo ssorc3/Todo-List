@@ -28,4 +28,14 @@ public class TodoItemTests
             _ = new TodoItem("TestUser", "");
         });
     }
+
+    [Test]
+    public void CompleteTodoSucceeds()
+    {
+        var todo1 = new TodoItem("TestUser", "An example todo");
+        Assert.That(todo1.Completed, Is.False);
+        
+        todo1.SetCompleted(true);
+        Assert.That(todo1.Completed, Is.True);
+    }
 }

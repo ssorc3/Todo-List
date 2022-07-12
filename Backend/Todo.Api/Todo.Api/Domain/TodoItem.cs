@@ -5,6 +5,7 @@ public class TodoItem
     public int Id { get; private set; }
     public string Description { get; private set; }
     public string CreatedBy { get; private set; }
+    public bool Completed { get; private set; }
 
     public TodoItem(string createdBy, string description)
     {
@@ -13,5 +14,11 @@ public class TodoItem
         Id = 0;
         Description = description;
         CreatedBy = createdBy;
+        Completed = false;
+    }
+
+    public void SetCompleted(bool completed)
+    {
+        Completed = completed;
     }
 }

@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Todo.Api.Application;
+using Todo.Api.Controllers;
 using Todo.Api.Domain;
 
 namespace Todo.Tests.InteractionTests;

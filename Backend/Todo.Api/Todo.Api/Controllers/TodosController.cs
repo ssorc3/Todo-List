@@ -1,8 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Todo.Api.Application;
 using Todo.Api.Domain;
+using ApplicationException = Todo.Api.Application.ApplicationException;
 
 namespace Todo.Api.Controllers;
+
+public record CreateTodoRequest(string? UserId, string Description);
+
+public record SetCompleteRequest(string? UserId, bool Completed);
 
 [ApiController]
 [Route("[controller]")]
@@ -35,6 +40,21 @@ public class TodosController : ControllerBase
             return BadRequest(new { Error = e.Message });
         }
 
+        return Ok();
+    }
+
+    [HttpPut("{id:int}")]
+    public async Task<ActionResult> SetComplete([FromRoute] int id, [FromBody] SetCompleteRequest request)
+    {
+        if (string.IsNullOrEmpty(request.UserId)) return BadRequest(new { Error = "You must set UserId" });
+        try
+        {
+            await _svc.SetComplete(request.UserId, id, request.Completed);
+        }
+        catch (Exception e) when (e is ApplicationException or DomainException)
+        {
+            return BadRequest(new { Error = e.Message });
+        }
         return Ok();
     }
 }
