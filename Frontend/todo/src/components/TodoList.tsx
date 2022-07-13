@@ -2,19 +2,28 @@ import { type TodoItem } from "../Types";
 import { Todo } from "./Todo"
 
 type TodoListProps = {
-    items: TodoItem[]
+    items: TodoItem[],
+    setCompleted: (item: TodoItem, completed: boolean) => Promise<void>
 }
 
-const TodoList: React.FC<TodoListProps> = ({ items }) => {
+const TodoList: React.FC<TodoListProps> = ({ items, setCompleted }) => {
+    const completed = items.filter(x => x.completed);
+    const uncompleted = items.filter(x => !x.completed);
+
     return (
         <div>
-            {items.length ?
-                items.map((item, index) => (
-                    <Todo key={index} {...item} />
+            <h2>Pending:</h2>
+            {uncompleted.length ?
+                uncompleted.map((item, index) => (
+                    <Todo key={index} item={item} setCompleted={setCompleted} />
                 ))
-                : <h2 className="message">
-                    You have no todos yet.
-                </h2>}
+                : <p className="message">
+                    You have no pending todos.
+                </p>}
+            <h2>Completed:</h2>
+            {completed.map((item, index) => (
+                <Todo key={index} item={item} setCompleted={setCompleted} />
+            ))}
         </div>
     )
 }

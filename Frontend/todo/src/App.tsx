@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { type TodoItem } from "./Types";
 import PuffLoader from "react-spinners/PuffLoader";
@@ -31,18 +31,24 @@ const App: React.FC = () => {
   const [todos, setTodos] = useState<TodoItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
+  const fetchData = useCallback(async () => {
+    const response = await API.fetchTodos(userId);
+    setTodos(response);
+    setLoading(false);
+  }, [userId, setTodos, setLoading]);
+
   useEffect(() => {
-    const getData = async () => {
-      const response = await API.fetchTodos(userId);
-      setTodos(response);
-      setLoading(false);
-    };
-    getData();
-  }, [userId, setTodos])
+    fetchData();
+  }, [userId, fetchData])
 
   const addTodo = async (todo: TodoItem): Promise<void> => {
     await API.saveTodo(userId, todo);
-    setTodos([...todos, todo]);
+    fetchData();
+  }
+
+  const setCompleted = async (todo: TodoItem, completed: boolean): Promise<void> => {
+    await API.completeTodo(userId, todo, completed);
+    fetchData();
   }
 
   return (
@@ -53,7 +59,7 @@ const App: React.FC = () => {
       <div className="container">
         {loading ?
           <Spinner />
-          : <TodoList items={todos} />}
+          : <TodoList items={todos} setCompleted={setCompleted} />}
         <TodoForm addTodo={addTodo} />
       </div>
     </div>

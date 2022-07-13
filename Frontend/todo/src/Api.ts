@@ -13,7 +13,12 @@ const saveTodo = async (userId: string, todo: TodoItem): Promise<void> => {
     await axios.post(`${baseUrl}/todos`, { userId, ...todo });
 }
 
+const completeTodo = async (userId: string, todo: TodoItem, completed: boolean): Promise<void> => {
+    await axios.put(`${baseUrl}/todos/${todo.id}`, { userId, completed })
+}
+
 export {
     fetchTodos,
-    saveTodo
+    saveTodo,
+    completeTodo
 };

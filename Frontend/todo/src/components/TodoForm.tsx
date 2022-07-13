@@ -25,7 +25,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ addTodo }) => {
         if (value === "") return;
         setError(false);
         try {
-            await addTodo({ id: 0, description: value })
+            await addTodo({ id: 0, description: value, completed: false })
             setValue("");
         } catch (e: any) {
             setError(true);
