@@ -30,5 +30,6 @@ public class MarkCompletedTests
     public void TearDown()
     {
         _client.Dispose();
+        _factory.Dispose();
     }
 }

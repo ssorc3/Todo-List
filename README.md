@@ -11,16 +11,23 @@ The full solution took about 3 hours.
 - .Net Core 6
 
 #### Starting the services
-On Windows, run the command:
+To start the backend, run these commands in this project's root directory:
+
+``` sh
+> cd Backend/Todo.Api
+> DOTNET_URLS=https://localhost:5003 dotnet run --project Todo.Api
 ```
-> .\start_services.bat
+
+Then in another terminal, run these commands in this project's root directory to start the frontend:
+
+``` sh
+> cd Frontend/todo 
+> npm install && npm start
 ```
-or on Linux, run the command:
-```
-> ./start_services.sh
-```
+
 These scripts will install the neccessary libraries and start the backend and the frontend.
-The frontend will be accessible at `localhost:3000`.
+The frontend will be accessible at `localhost:3000`.  
+Testing in Firefox I found I had to go to `https://localhost:5003/todos` and click "Accept the risk and continue" before API requests would work with the front end.
 
 ### What technical and functional assumptions did you make when implementing your solution?
 - The todos are not shown to everyone but are stored for each user.

@@ -20,10 +20,14 @@ const TodoList: React.FC<TodoListProps> = ({ items, setCompleted }) => {
                 : <p className="message">
                     You have no pending todos.
                 </p>}
-            <h2>Completed:</h2>
-            {completed.map((item, index) => (
-                <Todo key={index} item={item} setCompleted={setCompleted} />
-            ))}
+        {!!completed.length &&
+            <div>
+                <h2>Completed:</h2>
+                {completed.map((item, index) => (
+                    <Todo key={index} item={item} setCompleted={setCompleted} />
+                ))}
+            </div>
+        }
         </div>
     )
 }

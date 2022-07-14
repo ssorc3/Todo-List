@@ -5,14 +5,15 @@ namespace Todo.Tests.InteractionTests;
 [TestFixture]
 public class GetAllTests
 {
+    private TodoWebApplicationFactory _factory;
     private HttpClient _client;
 
     [SetUp]
     public void SetUp()
     {
-        var application = new TodoWebApplicationFactory();
+        _factory = new TodoWebApplicationFactory();
 
-        _client = application.CreateClient();
+        _client = _factory.CreateClient();
     }
 
     [Test]
@@ -33,5 +34,6 @@ public class GetAllTests
     public void TearDown()
     {
         _client.Dispose();
+        _factory.Dispose();
     }
 }
