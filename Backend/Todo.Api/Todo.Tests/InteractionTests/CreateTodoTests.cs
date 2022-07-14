@@ -2,8 +2,6 @@
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
-using Microsoft.AspNetCore.Mvc.Testing;
-using Todo.Api.Application;
 using Todo.Api.Controllers;
 using Todo.Api.Domain;
 
@@ -17,7 +15,7 @@ public class CreateTodoTests
     [SetUp]
     public void SetUp()
     {
-        var application = new WebApplicationFactory<Program>();
+        var application = new TodoWebApplicationFactory();
 
         _client = application.CreateClient();
     }
@@ -74,5 +72,11 @@ public class CreateTodoTests
             Assert.That(items2![0].Description, Is.EqualTo(description));
             Assert.That(items2![0].CreatedBy, Is.EqualTo(userId));
         });
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+        _client.Dispose();
     }
 }

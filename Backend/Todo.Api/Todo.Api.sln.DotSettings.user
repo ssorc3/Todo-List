@@ -1,8 +1,10 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=dbbb50f6_002D2e8d_002D49c4_002D8f7c_002D378f3c14ffad/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetAllTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;NUnit3x::1C2F910E-5844-4E89-B7B6-8F0C2334DB73::net6.0::Todo.Tests.InteractionTests.GetAllTests&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::1C2F910E-5844-4E89-B7B6-8F0C2334DB73::net6.0::Todo.Tests.UnitTests.TodoItemTests&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::1C2F910E-5844-4E89-B7B6-8F0C2334DB73::net6.0::Todo.Tests.InteractionTests.CreateTodoTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::1C2F910E-5844-4E89-B7B6-8F0C2334DB73::net6.0::Todo.Tests.InteractionTests.MarkCompletedTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

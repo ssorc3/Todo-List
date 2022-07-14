@@ -26,6 +26,7 @@ public class EntityFrameworkTodoStore : ITodoStore
 
     public async Task WithTodo(string userId, int todoId, Action<TodoItem?> action)
     {
+        var test = _ctx.Todos.ToList();
         var existing = _ctx.Todos.SingleOrDefault(x => x.CreatedBy == userId && x.Id == todoId);
         action(existing);
         await _ctx.SaveChangesAsync();

@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using Microsoft.AspNetCore.Mvc.Testing;
 
 namespace Todo.Tests.InteractionTests;
 
@@ -11,7 +10,7 @@ public class GetAllTests
     [SetUp]
     public void SetUp()
     {
-        var application = new WebApplicationFactory<Program>();
+        var application = new TodoWebApplicationFactory();
 
         _client = application.CreateClient();
     }
@@ -28,5 +27,11 @@ public class GetAllTests
     {
         var response = await _client.GetAsync("/todos?userId=test");
         Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+        _client.Dispose();
     }
 }
